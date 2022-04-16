@@ -1,12 +1,21 @@
-resource "aws_instance" "web" {
-  ami           = "ami-00ee4df451840fa9d"
-  instance_type = "t2.micro"
+data "aws_ami" "hemant_ami" {
+  most_recent = true
+  owners = ["self"]
+  filter {
+    name   = "name"
+    values = var.value
+  }
+}
+
+resource "aws_instance" "hemant" {
+  ami           = "${data.aws_ami.hemant_ami.id}"
+  instance_type = var.machinetype
   key_name = "A_10-30_keypair"
 
   tags = {
-    Name = "webserver1"
-    env = "Prod"
-    engineer = "hemanth"
+    Name = "HelloWorld"
   }
 }
+
+
 
