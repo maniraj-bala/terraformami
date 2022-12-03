@@ -1,1 +1,1 @@
-machinetype = "t3.micro"
+machinetype = "t2.micro"

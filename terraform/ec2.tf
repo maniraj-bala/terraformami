@@ -1,6 +1,6 @@
-data "aws_ami" "hemant_ami" {
+data "aws_ami" "ami-test1" {
   most_recent = true
-  owners = ["self"]
+  owners      = ["self"]
   filter {
     name   = "name"
     values = var.value
@@ -8,9 +8,9 @@ data "aws_ami" "hemant_ami" {
 }
 
 resource "aws_instance" "hemant" {
-  ami           = "${data.aws_ami.hemant_ami.id}"
+  ami           = data.aws_ami.ami-test1.id
   instance_type = var.machinetype
-  key_name = "A_10-30_keypair"
+  key_name      = "devjenkins"
 
   tags = {
     Name = "HelloWorld"
